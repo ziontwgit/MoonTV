@@ -2,8 +2,8 @@ name: 🔄 Auto Sync Fork from Upstream
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Runs every day at 2 AM UTC
-  workflow_dispatch:       # Allows manual triggering from GitHub UI
+    - cron: '0 2 * * *'  # Every day at 2 AM UTC
+  workflow_dispatch:      # Allow manual trigger from GitHub UI
 
 jobs:
   sync:
@@ -20,7 +20,7 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-    - name: Add upstream remote and fetch
+      - name: Add upstream remote and fetch
         run: |
           git remote | grep upstream || git remote add upstream https://github.com/LunaTechLab/MoonTV.git
           git fetch upstream
@@ -30,3 +30,4 @@ jobs:
           git checkout main
           git merge upstream/main --allow-unrelated-histories -m "Auto-sync: Merged upstream changes"
           git push origin main
+
