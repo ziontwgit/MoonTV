@@ -20,9 +20,9 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
 
-      - name: Add upstream remote and fetch
+    - name: Add upstream remote and fetch
         run: |
-          git remote add upstream https://github.com/LunaTechLab/MoonTV.git
+          git remote | grep upstream || git remote add upstream https://github.com/LunaTechLab/MoonTV.git
           git fetch upstream
 
       - name: Merge upstream/main into fork/main
